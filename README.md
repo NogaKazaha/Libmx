@@ -85,7 +85,7 @@ Function name|Description|Grade|
 |```mx_sort_list```|Function that sorts the list’s contents in ascending order. Function ``` cmp ``` returns true if ```a ``` > ``` b``` and false in other cases.|100|
 
 <footer>
-    <h3 align="center">Total mark is 95</h3>
+    <h3 align="center">Total mark is 93</h3>
     <p align="center"><img src="https://emojis.slackmojis.com/emojis/images/1531849430/4246/blob-sunglasses.gif?1531849430" width="30"></p>
     <h4 align="center">Feel free to use this repository for your own UCODE works (if you are a UCODE student too). I'm working on Libmx in October 2020.</h4>
 </footer>
