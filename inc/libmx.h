@@ -18,6 +18,7 @@ bool mx_isdigit(int c);
 bool mx_isspace(char c);
 bool mx_islower(int c);
 bool mx_isupper(int c);
+int mx_atoi(const char *str);
 
 // Utils pack
 void mx_printchar(char c);
@@ -61,6 +62,7 @@ char *mx_strjoin(const char *s1, const char *s2);
 char *mx_file_to_str(const char *file);
 char *mx_replace_substr(const char *str, const char *sub, const char *replace);
 int mx_read_line(char **lineptr, int buf_size, char delim, const int fd);
+void mx_printerr(const char *s);
 
 
 // Memory pack
