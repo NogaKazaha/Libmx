@@ -8,7 +8,7 @@ char *mx_file_to_str(const char *file) {
         close(fl);
         return NULL;
     }
-    size = mx_file_len(file);
+    size = file_len(file);
     if (size == 0) {
         return NULL;
     }

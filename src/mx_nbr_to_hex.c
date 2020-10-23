@@ -3,7 +3,7 @@
 char *mx_nbr_to_hex(unsigned long nbr) {
     char *number = NULL;
     unsigned long num = nbr;
-    int length = mx_num_len(nbr);
+    int length = num_len(nbr);
     int temp;
 
     number = malloc(length);

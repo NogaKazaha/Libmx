@@ -1,7 +1,7 @@
 #include "../inc/libmx.h"
 
 char *mx_itoa(int number) {
-	int length = mx_number_length(number);
+	int length = number_length(number);
 	int tmp = number;
 	char *result = NULL;
 	result = mx_strnew(length);

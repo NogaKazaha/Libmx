@@ -1,25 +1,18 @@
 #ifndef LIBMX
 #define LIBMX
 
-#include <unistd.h> 
 #include <stdlib.h>
+#include <unistd.h> 
 #include <fcntl.h>
 #include <malloc/malloc.h>
 #include <stdbool.h>
 
 //Extra functions
-int mx_file_len(const char *file);
-int mx_number_length(int number);
-int mx_num_len(unsigned long num);
-void mx_swap(void **s1, void **s2);
+int file_len(const char *file);
 int mx_count_letters(const char *s, char c);
-void mx_swap_str(char **s1, char **s2);
-char *ptr_delim_checking(char **ptr, char delim);
-char *buf_to_lineptr(char *lineptr, char **buf, int index);
-char *mx_strjoin_free(char *s1, const char *s2);
-char *mx_str_size_dup(const char *s1, size_t start, size_t end);
-char *mx_str_size_dup_free(char *s1, size_t start, size_t end);
-char *mx_str_size_cpy(char *dst, const char *src, int start, int end);
+int number_length(int number);
+int num_len(unsigned long num);
+void swap(void **s1, void **s2);
 bool mx_isalpha(int c);
 bool mx_isdigit(int c);
 bool mx_isspace(char c);
@@ -67,7 +60,8 @@ char **mx_strsplit(const char *s, char c);
 char *mx_strjoin(const char *s1, const char *s2);
 char *mx_file_to_str(const char *file);
 char *mx_replace_substr(const char *str, const char *sub, const char *replace);
-int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd);
+int mx_read_line(char **lineptr, int buf_size, char delim, const int fd);
+
 
 // Memory pack
 void *mx_memset(void *b, int c, size_t len);
@@ -89,7 +83,6 @@ typedef struct s_list
     struct s_list *next;
 }               t_list;
 
-//Functions 
 t_list *mx_create_node(void *data);
 void mx_push_front(t_list **list, void *data);
 void mx_push_back(t_list **list, void *data);

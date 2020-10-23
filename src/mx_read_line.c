@@ -1,36 +1,30 @@
 #include "../inc/libmx.h"
 
-int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd) {
-	size_t i;
-	int j;
-	static char	*ptr;
-	char *buf = NULL;
-
-	if (read(fd, NULL, 0) < 0 || fd == -1)
-		return -2;
-	else if (*lineptr)
-		mx_strdel(lineptr);	
-	if (ptr != NULL) {
-		*lineptr = ptr_delim_checking(&ptr, delim);
-		if (ptr != NULL)
-			return mx_strlen(*lineptr);
-	}
-	buf = mx_strnew(buf_size);
-	while ((i = read(fd, buf, buf_size)) > 0) {
-		j = mx_get_char_index(buf, delim);
-		if (i < buf_size && j == -1) {
-			*lineptr = buf_to_lineptr(*lineptr, &buf, i);
-			return -1;
-		}
-		else if (j == -1) 
-			*lineptr = mx_strjoin_free(*lineptr, buf);
-		else if (j > -1) {
-			*lineptr = buf_to_lineptr(*lineptr, &buf, j);
-			if (buf[j + 1])
-				ptr = mx_str_size_dup(buf, j + 1, i);
-			break;
-		}
-	}
-	mx_strdel(&buf);
-	return ((i == 0 && j == -1) ? -1 : mx_strlen(*lineptr));
+int mx_read_line(char **lineptr, int buf_size, char delim, const int fd){
+    if (buf_size >= 1 && buf_size <= 2147483647){
+        char *buf = mx_strnew(buf_size);
+        char *str = mx_strnew(buf_size);
+        size_t type;
+        if (fd > 0){
+            while ((type = read(fd,buf,buf_size)) > 0) {
+                mx_strcat(str, buf);
+            }
+            if(type < 0){
+                return -1;
+            }
+            int index = mx_get_char_index(str, delim);
+            if (index != -1) {
+                mx_strncpy(*lineptr, str, index);
+            }
+            else{
+                *lineptr = str;
+                return -1;
+            }
+            close(fd);
+            free(buf);
+            free(str);
+            return index;
+        }
+    }
+    return -2;
 }

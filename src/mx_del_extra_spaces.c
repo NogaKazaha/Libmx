@@ -5,9 +5,9 @@ char *mx_del_extra_spaces(const char *str) {
     char *temp = NULL;
     int i = 0;
     int j = 0;
-
-    if (!str) return NULL;
-    
+    if (!str) {
+        return NULL;
+    }
     mem = mx_strnew(mx_strlen(str));
     while (str[i]) {
         if (!(mx_isspace(str[i]))) {
